@@ -8,7 +8,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      value: ""
+      value: "",
+      token: ""
     };
   }
 
@@ -16,14 +17,15 @@ class App extends Component {
     this.setState({ value: event.target.value });
   };
 
+  handleTokenChange = event => {
+    this.setState({ token: event.target.value });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
-    fetch(
-      `https://testingappforrichard.herokuapp.com/url?url=${this.state.value}`,
-      {
-        method: "get"
-      }
-    )
+    fetch(`/url?url=${this.state.value}&token=${this.state.token}`, {
+      method: "get"
+    })
       .then(response => response.json())
       .then(responseJson => {
         download(
@@ -49,6 +51,17 @@ class App extends Component {
                 name="name"
                 value={this.state.value}
                 onChange={this.handleChange}
+                className="styled-label"
+              />
+            </label>
+            <label>
+              Token: (optional)
+              <input
+                type="text"
+                name="token"
+                value={this.state.token}
+                onChange={this.handleTokenChange}
+                className="styled-label"
               />
             </label>
             <input type="submit" value="Submit" />
