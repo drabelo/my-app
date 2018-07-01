@@ -39,34 +39,32 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        <p className="App-intro">
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Url:
-              <input
-                type="text"
-                name="name"
-                value={this.state.value}
-                onChange={this.handleChange}
-                className="styled-label"
-              />
-            </label>
-            <label>
-              Token: (optional)
-              <input
-                type="text"
-                name="token"
-                value={this.state.token}
-                onChange={this.handleTokenChange}
-                className="styled-label"
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        </p>
+        <form onSubmit={this.handleSubmit}>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Url</label>
+            <input
+              className="form-control"
+              placeholder="Enter Url"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Token</label>
+            <input
+              class="form-control"
+              placeholder="Enter Token"
+              value={this.state.token}
+              onChange={this.handleTokenChange}
+            />
+            <small id="emailHelp" class="form-text text-muted">
+              Optional
+            </small>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            Download
+          </button>
+        </form>
       </div>
     );
   }
